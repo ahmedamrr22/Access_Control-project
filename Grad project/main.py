@@ -9,6 +9,7 @@ LOG_PATH = "data/logs.txt"
 
 # Voice input function
 
+
 def listen_command():
     r = sr.Recognizer()
     with sr.Microphone() as source:
@@ -24,6 +25,7 @@ def listen_command():
 
 
 # Normalize voice input
+
 
 def normalize_command(cmd):
     cmd = cmd.lower().strip()
@@ -55,6 +57,11 @@ while True:
     current_user, msg = login(users, username, password, LOG_PATH)
     print(msg)
     if current_user:
+        # Persist potential password upgrade (plain -> hashed)
+        try:
+            save_users(USERS_PATH, users)
+        except Exception:
+            pass
         break
 
 

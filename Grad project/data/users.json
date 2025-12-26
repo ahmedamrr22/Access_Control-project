@@ -1,7 +1,7 @@
 [
     {
         "username": "admin",
-        "password": "admin",
+        "password": "pbkdf2_sha256$100000$174fdf30bc067112dfab95abe0dcf539$99451c8887c9ed641253eb13b818711751d8077068b3537b789153bbe85bf1f0",
         "role": "admin",
         "failed_attempts": 0,
         "locked": false
@@ -9,6 +9,13 @@
     {
         "username": "user1",
         "password": "user123",
+        "role": "user",
+        "failed_attempts": 0,
+        "locked": false
+    },
+    {
+        "username": "test",
+        "password": "pbkdf2_sha256$100000$985f8b94dfa8c1cc57e2c9730f80e054$af19145c9f652dcce3c55980087de598d52a8b0cd34779b586dfc4a7592ed9af",
         "role": "user",
         "failed_attempts": 0,
         "locked": false

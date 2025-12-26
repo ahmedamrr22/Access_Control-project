@@ -17,3 +17,41 @@
 [2025-12-26 15:17:56] admin removed user ahmed
 [2025-12-26 15:17:56] admin executed remove_user: ahmed
 [2025-12-26 15:18:06] admin logged out
+[2025-12-26 16:46:06] admin logged in
+[2025-12-26 16:47:24] admin logged in
+[2025-12-26 16:47:45] admin entered unknown command: admin
+[2025-12-26 16:47:56] admin entered unknown command: admin
+[2025-12-26 16:48:30] admin entered unknown command: fuck you fuck
+[2025-12-26 16:48:43] admin entered unknown command: add us
+[2025-12-26 16:48:49] admin entered unknown command: add user add
+[2025-12-26 16:50:14] admin entered unknown command: help help
+[2025-12-26 16:50:52] admin executed remove_user: 
+[2025-12-26 16:51:10] admin entered unknown command: alarm for 5
+[2025-12-26 16:51:28] admin entered unknown command: i mean alarm off
+[2025-12-26 16:51:33] admin entered unknown command: i mean alarm
+[2025-12-26 16:51:54] admin entered unknown command: help help help help help help help help help
+[2025-12-26 16:53:54] admin logged out
+[2025-12-26 16:54:08] admin logged in
+[2025-12-26 16:54:24] admin entered unknown command: test
+[2025-12-26 16:55:17] admin entered unknown command: remove user view logs
+[2025-12-26 16:55:22] admin entered unknown command: do you log
+[2025-12-26 16:55:26] admin entered unknown command: new
+[2025-12-26 16:55:30] admin entered unknown command: bul
+[2025-12-26 16:55:44] admin entered unknown command: do you look
+[2025-12-26 16:55:48] admin entered unknown command: vel
+[2025-12-26 16:56:03] admin entered unknown command: ll
+[2025-12-26 16:56:24] admin entered unknown command: do you look
+[2025-12-26 17:30:13] admin logged in
+[2025-12-26 17:30:53] admin entered unknown command: logout logout logout music
+[2025-12-26 17:31:46] admin logged in
+[2025-12-26 17:33:40] admin logged in
+[2025-12-26 17:35:39] admin password upgraded to hashed storage
+[2025-12-26 17:35:39] admin logged in
+[2025-12-26 17:36:40] admin password upgraded to hashed storage
+[2025-12-26 17:36:40] admin logged in
+[2025-12-26 17:36:54] admin added user test
+[2025-12-26 17:36:54] admin executed add_user via GUI: test
+[2025-12-26 17:36:56] admin logged out via GUI
+[2025-12-26 17:39:55] admin logged in
+[2025-12-26 17:41:46] test logged in
+[2025-12-26 17:44:39] admin logged in
