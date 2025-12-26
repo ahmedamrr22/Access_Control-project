@@ -39,6 +39,10 @@ def normalize_command(cmd):
         return "help"
     if cmd in ["status", "show status", "my status"]:
         return "status"
+    if cmd in ["change password", "change_password", "change my password", "update password", "changepassword"]:
+        return "change_password"
+    if cmd in ["export users", "exportcsv", "export csv", "export users csv", "export", "download users", "save users"]:
+        return "export_csv"
     if cmd in ["logout", "log out", "exit"]:
         return "logout"
     return cmd

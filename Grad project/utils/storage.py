@@ -1,5 +1,6 @@
 import json
 from models.user import User
+import csv
 
 def load_users(path):
     users = []
@@ -27,3 +28,15 @@ def save_users(path, users):
         })
     with open(path, "w") as f:
         json.dump(data, f, indent=4)
+
+
+def export_users_csv(csv_path, users):
+    """Export users data to a CSV file at `csv_path`.
+
+    Columns: username, role, locked, failed_attempts
+    """
+    with open(csv_path, "w", newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(["username", "role", "locked", "failed_attempts"])
+        for u in users:
+            writer.writerow([u.username, u.role, u.locked, u.failed_attempts])
