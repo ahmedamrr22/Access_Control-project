@@ -1,0 +1,16 @@
+[
+    {
+        "username": "admin",
+        "password": "admin",
+        "role": "admin",
+        "failed_attempts": 0,
+        "locked": false
+    },
+    {
+        "username": "user1",
+        "password": "user123",
+        "role": "user",
+        "failed_attempts": 0,
+        "locked": false
+    }
+]
