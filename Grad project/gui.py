@@ -239,10 +239,7 @@ class App(tk.Tk):
             )
         r = sr.Recognizer()
         with sr.Microphone() as source:
-            try:
-                messagebox.showinfo("Voice", "Listening... Speak now.")
-            except Exception:
-                pass
+            # Note: avoid showing UI from background thread; caller should notify UI.
             audio = r.listen(source)
         try:
             cmd = r.recognize_google(audio)
@@ -262,17 +259,35 @@ class App(tk.Tk):
             self.voice_btn.config(state="disabled")
         except Exception:
             pass
+        # Notify user on main thread that we're listening (avoid doing this inside bg thread)
+        try:
+            messagebox.showinfo("Voice", "Listening... Speak now.")
+        except Exception:
+            pass
         t = threading.Thread(target=self._bg_listen, daemon=True)
         t.start()
 
     def _bg_listen(self):
         cmd = self.listen_command()
         normalized = self.normalize_command(cmd)
-        self.process_voice_command(normalized, raw=cmd)
+        # Schedule processing on the Tk main thread to avoid Tcl/Tk errors
         try:
-            self.voice_btn.config(state="normal")
+            self.after(0, lambda n=normalized, c=cmd: self.process_voice_command(n, raw=c))
         except Exception:
-            pass
+            # fallback if scheduling fails
+            try:
+                self.process_voice_command(normalized, raw=cmd)
+            except Exception:
+                pass
+
+        # Re-enable the voice button on the main thread
+        try:
+            self.after(0, lambda: self.voice_btn.config(state="normal"))
+        except Exception:
+            try:
+                self.voice_btn.config(state="normal")
+            except Exception:
+                pass
 
     def process_voice_command(self, cmd, raw=None):
         if not cmd:

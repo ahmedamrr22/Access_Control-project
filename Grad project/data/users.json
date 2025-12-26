@@ -19,5 +19,12 @@
         "role": "user",
         "failed_attempts": 0,
         "locked": false
+    },
+    {
+        "username": "test2",
+        "password": "pbkdf2_sha256$100000$154974f2c095dcf490de7d72956c6ef8$3e8c655a0ead05133235db0e8a82413ea5c45a272337f3364cf73839277ea9a4",
+        "role": "user",
+        "failed_attempts": 0,
+        "locked": false
     }
 ]
