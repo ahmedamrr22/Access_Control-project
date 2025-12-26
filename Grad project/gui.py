@@ -272,7 +272,9 @@ class App(tk.Tk):
         normalized = self.normalize_command(cmd)
         # Schedule processing on the Tk main thread to avoid Tcl/Tk errors
         try:
-            self.after(0, lambda n=normalized, c=cmd: self.process_voice_command(n, raw=c))
+            self.after(
+                0, lambda n=normalized, c=cmd: self.process_voice_command(n, raw=c)
+            )
         except Exception:
             # fallback if scheduling fails
             try:
