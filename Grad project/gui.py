@@ -191,9 +191,9 @@ class App(tk.Tk):
         ttk.Button(btn_frame, text="Export CSV", command=self.export_csv_dialog).pack(
             side="left", padx=6
         )
-        ttk.Button(btn_frame, text="Change Password", command=self.change_password_dialog).pack(
-            side="left", padx=6
-        )
+        ttk.Button(
+            btn_frame, text="Change Password", command=self.change_password_dialog
+        ).pack(side="left", padx=6)
 
     def show_user_controls(self):
         frame = ttk.Frame(self.main_frame)
@@ -202,7 +202,9 @@ class App(tk.Tk):
         status = f"Username: {self.current_user.username}\nRole: {self.current_user.role}\nLocked: {self.current_user.locked}\nFailed attempts: {self.current_user.failed_attempts}"
         ttk.Label(frame, text="Status:").pack(anchor="w")
         ttk.Label(frame, text=status, justify="left").pack(anchor="w")
-        ttk.Button(frame, text="Change Password", command=self.change_password_dialog).pack(anchor="w", pady=8)
+        ttk.Button(
+            frame, text="Change Password", command=self.change_password_dialog
+        ).pack(anchor="w", pady=8)
 
     def refresh_user_list(self):
         try:
@@ -235,9 +237,23 @@ class App(tk.Tk):
             return "help"
         if cmd in ["status", "show status", "my status"]:
             return "status"
-        if cmd in ["change password", "change_password", "change my password", "update password", "changepassword"]:
+        if cmd in [
+            "change password",
+            "change_password",
+            "change my password",
+            "update password",
+            "changepassword",
+        ]:
             return "change_password"
-        if cmd in ["export users", "exportcsv", "export csv", "export users csv", "export", "download users", "save users"]:
+        if cmd in [
+            "export users",
+            "exportcsv",
+            "export csv",
+            "export users csv",
+            "export",
+            "download users",
+            "save users",
+        ]:
             return "export_csv"
         if cmd in ["logout", "log out", "exit"]:
             return "logout"
@@ -455,7 +471,9 @@ class App(tk.Tk):
         # Admins may change another user's password; normal users change their own
         if self.current_user.role == "admin":
             target = simpledialog.askstring(
-                "Change password", "Username to change (leave blank for yourself):", parent=self
+                "Change password",
+                "Username to change (leave blank for yourself):",
+                parent=self,
             )
             if target is None:
                 return
@@ -481,9 +499,14 @@ class App(tk.Tk):
             messagebox.showerror("Error", "New password must be at least 8 characters")
             return
 
-        result = change_password(self.users, self.current_user, target, old, new, LOG_PATH)
+        result = change_password(
+            self.users, self.current_user, target, old, new, LOG_PATH
+        )
         save_users(USERS_PATH, self.users)
-        log(LOG_PATH, f"{self.current_user.username} executed change_password via GUI: {target}")
+        log(
+            LOG_PATH,
+            f"{self.current_user.username} executed change_password via GUI: {target}",
+        )
         messagebox.showinfo("Change password", result)
         try:
             self.refresh_user_list()
@@ -498,7 +521,10 @@ class App(tk.Tk):
             return
         try:
             export_users_csv(csv_path, self.users)
-            log(LOG_PATH, f"{self.current_user.username} exported users to CSV via GUI: {csv_path}")
+            log(
+                LOG_PATH,
+                f"{self.current_user.username} exported users to CSV via GUI: {csv_path}",
+            )
             messagebox.showinfo("Export CSV", f"Exported users to {csv_path}")
         except Exception as e:
             messagebox.showerror("Export CSV", f"Failed to export CSV: {e}")

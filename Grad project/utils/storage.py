@@ -2,6 +2,7 @@ import json
 from models.user import User
 import csv
 
+
 def load_users(path):
     users = []
     try:
@@ -16,16 +17,19 @@ def load_users(path):
         pass
     return users
 
+
 def save_users(path, users):
     data = []
     for u in users:
-        data.append({
-            "username": u.username,
-            "password": u.password,
-            "role": u.role,
-            "failed_attempts": u.failed_attempts,
-            "locked": u.locked
-        })
+        data.append(
+            {
+                "username": u.username,
+                "password": u.password,
+                "role": u.role,
+                "failed_attempts": u.failed_attempts,
+                "locked": u.locked,
+            }
+        )
     with open(path, "w") as f:
         json.dump(data, f, indent=4)
 
@@ -35,7 +39,7 @@ def export_users_csv(csv_path, users):
 
     Columns: username, role, locked, failed_attempts
     """
-    with open(csv_path, "w", newline='', encoding='utf-8') as csvfile:
+    with open(csv_path, "w", newline="", encoding="utf-8") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(["username", "role", "locked", "failed_attempts"])
         for u in users:

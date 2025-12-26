@@ -36,7 +36,9 @@ def login(users, username, password, log_path):
     return None, "Username not found"
 
 
-def change_password(users, current_user, username, old_password, new_password, log_path):
+def change_password(
+    users, current_user, username, old_password, new_password, log_path
+):
     """Change password for `username`.
 
     - If `current_user` is admin, they may change another user's password without providing the old one.
@@ -47,7 +49,10 @@ def change_password(users, current_user, username, old_password, new_password, l
             # If not admin and trying to change any account, require old password
             if current_user.role != "admin":
                 if not verify_password(old_password, u.password):
-                    log(log_path, f"{current_user.username} failed password change for {username}")
+                    log(
+                        log_path,
+                        f"{current_user.username} failed password change for {username}",
+                    )
                     return "Incorrect current password"
 
             if not isinstance(new_password, str) or len(new_password) < 8:
@@ -55,7 +60,9 @@ def change_password(users, current_user, username, old_password, new_password, l
 
             try:
                 u.password = hash_password(new_password)
-                log(log_path, f"{current_user.username} changed password for {username}")
+                log(
+                    log_path, f"{current_user.username} changed password for {username}"
+                )
                 return "Password changed"
             except Exception:
                 return "Failed to change password"

@@ -6,6 +6,7 @@ from utils.storage import save_users, export_users_csv
 LOG_PATH = "data/logs.txt"
 USERS_PATH = "data/users.json"
 
+
 def handle_command(cmd, current_user, users):
     cmd = cmd.lower()
 
@@ -28,7 +29,9 @@ def handle_command(cmd, current_user, users):
     # Change password (users for themselves; admins may change others)
     if cmd == "change_password":
         if current_user.role == "admin":
-            target = input("Enter username to change (leave blank for yourself): ").strip()
+            target = input(
+                "Enter username to change (leave blank for yourself): "
+            ).strip()
             if not target:
                 target = current_user.username
             # Admin doesn't need to provide old password when changing others
@@ -53,20 +56,20 @@ def handle_command(cmd, current_user, users):
             role = input("Enter role (admin/user): ")
             result = add_user(current_user, users, username, password, role)
             log(LOG_PATH, f"{current_user.username} executed add_user: {username}")
-            
+
             # Save users immediately
             save_users(USERS_PATH, users)
-            
+
             return result
 
         if cmd == "remove_user":
             username = input("Enter username to remove: ")
             result = remove_user(current_user, users, username)
             log(LOG_PATH, f"{current_user.username} executed remove_user: {username}")
-            
+
             # Save users immediately
             save_users(USERS_PATH, users)
-            
+
             return result
 
         if cmd == "view_logs":
@@ -84,7 +87,10 @@ def handle_command(cmd, current_user, users):
                 csv_path = "data/users.csv"
             try:
                 export_users_csv(csv_path, users)
-                log(LOG_PATH, f"{current_user.username} exported users to CSV: {csv_path}")
+                log(
+                    LOG_PATH,
+                    f"{current_user.username} exported users to CSV: {csv_path}",
+                )
                 return f"Exported users to {csv_path}"
             except Exception as e:
                 return f"Failed to export CSV: {e}"
